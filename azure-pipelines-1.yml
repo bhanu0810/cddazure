@@ -1,0 +1,25 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+# Use the Python task to specify the Python version
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+# Install dependencies or setup environment if needed
+- script: |
+    python --version
+    echo "Python environment verified successfully."
+  displayName: 'Verify Python Version'
+
+# Run the Python script
+- script: |
+    python add1.py
+  displayName: 'Run Python Script'
+
+# Optional: Include the Python script in the repository to ensure it's available
